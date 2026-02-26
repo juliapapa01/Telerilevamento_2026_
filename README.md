@@ -6,3 +6,6 @@ Code developed during Duccio Rocchini's course - Telerilevamento Geo-Ecologico p
 
 ##Il docente
 Duccio Rocchini
+
+
+![sentinel-2](https://github.com/user-attachments/assets/f77ef346-741b-49b8-bb5d-abe68afba32b)
