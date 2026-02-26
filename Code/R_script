@@ -1,0 +1,24 @@
+# R script
+
+#oggetti e assegnazioni
+michele=3+5
+tecla<-4+6
+michele+tecla
+
+#arrays o vettori
+sonia= c(10, 8, 3, 1, 0)  #funzione c con argomenti dentro le () separati da virgole
+giorgia<-c(3, 10, 20, 50, 100)
+plot(giorgia, sonia, col="blue", pch=19, cex=2, xlab="inquinanti", ylab="delfini")
+#point character pch
+
+#installare pacchetti
+#CRAN
+install.packages("terra")
+library(terra)
+
+#GitHub
+install.packages("devtools")  #o remotes
+library(devtools)
+install_github("ducciorocchini/imageRy")
+
+
