@@ -76,3 +76,17 @@ plot(b3, col=magma(100))
 plot(b4, col=magma(100))
 plot(b8, col=magma(100))
 
+#stack
+sentinel=c(b2,b3,b4,b8)
+plot(sentinel, col=inferno(100))
+
+#print
+b2
+names(sentinel)
+plot(sentinel$"file15c85ee6d7c")
+
+#subset
+#layer1=b2, layer2=b3, layer3=b4, layer4=b8
+plot(sentinel[[4]])
+plot(sentinel[[2]])
+
