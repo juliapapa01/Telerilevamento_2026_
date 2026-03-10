@@ -6,6 +6,11 @@ im.list()
 #install viridis package
 install.packages("viridis")
 library(viridis)
+library(ggplot2)
+install.packages("patchwork")
+library(patchwork)
+#no install.packages("GGally")
+# library(GGally)
 
 #sentinel2 (Copernicus) bands
 # https://gisgeography.com/sentinel-2-bands-combinations/
@@ -89,4 +94,60 @@ plot(sentinel$"file15c85ee6d7c")
 #layer1=b2, layer2=b3, layer3=b4, layer4=b8
 plot(sentinel[[4]])
 plot(sentinel[[2]])
+b2=im.import("sentinel.dolomites.b2.tif")
+b3=im.import("sentinel.dolomites.b3.tif")
+b4=im.import("sentinel.dolomites.b4.tif")
+b8=im.import("sentinel.dolomites.b8.tif")
+im.ggplot(b8)
+p1=im.ggplot(b8)
+p2=im.ggplot(b4)
+p1+p2
 
+#multiframe:
+#1 par(mfrow=c(1,2))
+#2 im.multiframe(1,2)
+#3 stack
+#4 ggplot2 patchwork
+
+#RGB plotting
+#stack
+sentinel=c(b2, b3, b4, b8)
+
+#1=b2 blue
+#2=b3 green
+#3=b4 red
+#4=b8 NIR
+#3 filters and 4 bands
+par(mfrow=c(1,2))
+im.plotRGB(sentinel, r=3, g=2, b=1) #natural colours
+im.plotRGB(sentinel, r=4, g=3, b=2) #false colours
+
+plot(sentinel[[4]])
+im.plotRGB(sentinel, r=4, g=3, b=2)
+
+#NIR on green
+im.plotRGB(sentinel, r=3, g=4, b=2)
+
+#NIR on blue component of the RGB scheme
+im.plotRGB(sentinel, r=3, g=2, b=4)
+
+#plot the four elements of rgb in a single multiframe
+par(mfrow=c(2,2))
+im.plotRGB(sentinel, r=3, g=2, b=1) 
+im.plotRGB(sentinel, r=4, g=3, b=2)
+im.plotRGB(sentinel, r=3, g=4, b=2)
+im.plotRGB(sentinel, r=3, g=2, b=4)
+
+#positioning of visible bands
+par(mfrow=c(1,2)) 
+im.plotRGB(sentinel, r=4, g=3, b=2) 
+im.plotRGB(sentinel, r=4, g=2, b=3)
+
+pairs(sentinel) 
+
+#simplifying the function
+im.plotRGB(sentinel, 4, 2, 3)
+
+#plotRGB() from terra
+plotRGB(sentinel, 4,2,3, stretch="lin")
+plotRGB(sentinel, 4,2,3, stretch="hist")
