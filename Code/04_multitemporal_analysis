@@ -3,6 +3,8 @@
 library(terra)
 library(imageRy)
 library(viridis)
+library(ggplot2)
+library(ggridges)
 
 im.list()
 
@@ -42,6 +44,39 @@ plot(diff)
 
 #RGB 
 im.plotRGB(G, r=1, g=2, b=4)
+
+#NDVI data
+ndvi=im.import("Sentinel2_NDVI_2020")
+plot(ndvi, col=magma(100))
+#histograms
+hist(ndvi)
+
+#ridgeline plotting
+im.ridgeline(ndvi, scale=1, palette="viridis")
+
+#correggere i nomi
+names(ndvi)=c("02_feb","05_may","08_aug","11_nov")
+im.ridgeline(ndvi, scale=1, palette="viridis")
+
+#pairs
+pairs(ndvi)
+plot(ndvi[[1]],ndvi[[2]])
+
+#y=x
+#y=a+bx
+#y=0+1x
+
+#x=y 
+abline(0,1)
+
+plot(ndvi[[1]],ndvi[[2]], xlim=c(-0.3,0.9), ylim=c(-0.3,0.9))
+abline(0,1)
+
+
+
+
+
+
 
 
 
