@@ -1,0 +1,9 @@
+#importing data- drone images
+library(terra)
+
+setwd("C:/teleril")
+getwd()
+list.files()
+
+
+
