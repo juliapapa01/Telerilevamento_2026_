@@ -1,6 +1,8 @@
 #code for classifying data
 library(terra)
 library(imageRy)
+library(ggplot2)
+library(patchwork)
 
 im.list()
 
@@ -63,10 +65,41 @@ perc2006=prop2006*100
 
 #table
 tabout=data.frame(
-  class=c("forest","human"),
+         class=c("forest","human"),
          perc1992=c(83, 17),
          perc2006=c(45, 55)
          )
+
+ggplot(tabout, aes(x=class, y=perc1992, color=class)) +  #structure
+  geom_bar(stat="identity", fill="white")       #bar plot
+
+ggplot(tabout, aes(x=class, y=perc2006, color=class)) +  #structure
+  geom_bar(stat="identity", fill="white")
+
+#using patchwork
+p1=ggplot(tabout, aes(x=class, y=perc1992, color=class)) +  #structure
+  geom_bar(stat="identity", fill="white")       #bar plot
+
+p2=ggplot(tabout, aes(x=class, y=perc2006, color=class)) +  #structure
+  geom_bar(stat="identity", fill="white")
+
+p1+p2
+
+#setting the y axis and legend
+
+p1=ggplot(tabout, aes(x=class, y=perc1992, color=class)) +  
+  geom_bar(stat="identity", fill="white") +   
+  ylim(c(0,100)) +
+  theme(legend.position="none") +
+  theme_minimal()
+p2=ggplot(tabout, aes(x=class, y=perc2006, color=class)) +  
+  geom_bar(stat="identity", fill="white") +
+    ylim(c(0,100)) +
+  theme(legend.position="none") +
+  theme_dark()
+p1+p2
+
+
 
 
 
